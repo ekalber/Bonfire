@@ -4,6 +4,7 @@ class AccountsController < ApplicationController
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.all
+    @accounts = @accounts.where(["nombre LIKE :filter", :filter => "%" + params[:filter] + "%"]) unless params[:filter].blank?
   end
 
   # GET /accounts/1 or /accounts/1.json

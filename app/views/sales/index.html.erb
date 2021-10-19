@@ -1,17 +1,15 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Sales</h1>
-
-<table>
+<%= link_to 'Nueva venta', new_sale_path, class: "btn btn-light" %>
+<table class="table table-hover table-light">
   <thead>
     <tr>
-      <th>Descripcion</th>
+      <th>Descripción</th>
       <th>Precio</th>
       <th>Monto cliente</th>
       <th>Ganancia</th>
       <th>Vendido</th>
       <th>Pagado</th>
-      <th>Account</th>
+      <th>Cuenta</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,20 +18,17 @@
     <% @sales.each do |sale| %>
       <tr>
         <td><%= sale.descripcion %></td>
-        <td><%= sale.precio %></td>
-        <td><%= sale.monto_cliente %></td>
-        <td><%= sale.ganancia %></td>
-        <td><%= sale.vendido %></td>
-        <td><%= sale.pagado %></td>
-        <td><%= sale.account_id %></td>
-        <td><%= link_to 'Show', sale %></td>
-        <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
-        <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= "$"+sale.precio.to_s %></td>
+        <td><%= "$"+sale.monto_cliente.to_s %></td>
+        <td><%= "$"+sale.ganancia.to_s %></td>
+        <td><%= raw iconify_active(sale.vendido) %></td>
+        <td><%= raw iconify_active(sale.pagado) %></td>
+        <td><%= sale.account.nombre %></td>
+        <td><%= link_to 'Editar', edit_sale_path(sale), class: "btn btn-primary", style: "color:white" %></td>
+        <td><%= link_to 'Eliminar', sale, class: "btn btn-primary", style: "color:white",  method: :delete, data: { confirm: '¿Está seguro' }%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Sale', new_sale_path %>

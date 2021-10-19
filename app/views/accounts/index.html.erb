@@ -1,31 +1,53 @@
+<br><br>
 <p id="notice"><%= notice %></p>
-
-<h1>Accounts</h1>
-
+<div class="modal fade" id="nuevaFicha" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva ficha</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= link_to 'Nueva venta', new_account_path, class: "btn btn-dark" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#nuevaFicha" id="margen">Nueva ficha</a>
+<form method="GET" action="/accounts">
+  <input type="text" name="filter" placeholder="Nombre">
+  <input type="submit" class="btn btn-dark" value="Buscar" />
+</form>
 <table>
   <thead>
-    <tr>
+    <!--<tr>
       <th>Nombre</th>
       <th>Dni</th>
       <th>Celular</th>
       <th colspan="3"></th>
-    </tr>
+    </tr>-->
   </thead>
 
   <tbody>
     <% @accounts.each do |account| %>
       <tr>
-        <td><%= account.nombre %></td>
+        <!--<td><%= account.nombre %></td>
         <td><%= account.dni %></td>
         <td><%= account.celular %></td>
         <td><%= link_to 'Show', account %></td>
         <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#exampleModal"><%= account.nombre %></a>
+      </div>
+
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Account', new_account_path %>
