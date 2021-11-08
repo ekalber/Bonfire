@@ -1,8 +1,120 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Nueva venta', new_sale_path, class: "btn btn-light" %>
+<br><br>
+<div class="modal fade" id="nuevaVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva venta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <%= form_with(model: Sale.new) do |form| %>
+        <div class="modal-body">
+          <div class="field">
+            <%= "Descripción" %>
+            <%= form.text_field :descripcion, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :precio %>
+            <%= form.number_field :precio, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= "Monto para el cliente" %>
+            <%= form.number_field :monto_cliente, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :ganancia %>
+            <%= form.number_field :ganancia, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= "¿Está vendido?" %>
+            <br>
+            <%= form.check_box :vendido, class:"form-check-input" %>
+          </div>
+
+          <div class="field">
+            <%= "¿Está pagado?" %>
+            <br>
+            <%= form.check_box :pagado, class:"form-check-input" %>
+          </div>
+
+          <div class="field">
+            <%= "Cuenta" %>
+            <%= form.collection_select :account_id, Account.all, :id, :nombre, { :include_blank => true }, {class: 'form-select'} %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="editarVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar venta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <%= form_with(model: Sale.new) do |form| %>
+        <div class="modal-body">
+          <div class="field">
+            <%= "Descripción" %>
+            <%= form.text_field :descripcion, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :precio %>
+            <%= form.number_field :precio, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= "Monto para el cliente" %>
+            <%= form.number_field :monto_cliente, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :ganancia %>
+            <%= form.number_field :ganancia, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= "¿Está vendido?" %>
+            <br>
+            <%= form.check_box :vendido, class:"form-check-input" %>
+          </div>
+
+          <div class="field">
+            <%= "¿Está pagado?" %>
+            <br>
+            <%= form.check_box :pagado, class:"form-check-input" %>
+          </div>
+
+          <div class="field">
+            <%= "Cuenta" %>
+            <%= form.collection_select :account_id, Account.all, :id, :nombre, { :include_blank => true }, {class: 'form-select'} %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#nuevaVenta" id="margen">Nueva venta</a>
+<br><br>
 <table class="table table-hover table-light">
   <thead>
-    <tr>
+  <tr>
       <th>Descripción</th>
       <th>Precio</th>
       <th>Monto cliente</th>
@@ -25,7 +137,7 @@
         <td><%= raw iconify_active(sale.pagado) %></td>
         <td><%= sale.account.nombre %></td>
         <td><%= link_to 'Editar', edit_sale_path(sale), class: "btn btn-primary", style: "color:white" %></td>
-        <td><%= link_to 'Eliminar', sale, class: "btn btn-primary", style: "color:white",  method: :delete, data: { confirm: '¿Está seguro' }%></td>
+        <td><%= link_to 'Eliminar', sale, class: "btn btn-primary", style: "color:white",  method: :delete, data: { confirm: '¿Está seguro?' }%></td>
       </tr>
     <% end %>
   </tbody>

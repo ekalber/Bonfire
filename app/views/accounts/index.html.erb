@@ -7,13 +7,26 @@
         <h5 class="modal-title" id="exampleModalLabel">Nueva ficha</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <%= link_to 'Nueva venta', new_account_path, class: "btn btn-dark" %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
-      </div>
+      <%= form_with(model: Account.new) do |form| %>
+        <div class="modal-body">
+            <div class="field">
+              <%= form.label :nombre %>
+              <%= form.text_field :nombre, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= "DNI" %>
+              <%= form.number_field :dni, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= "Número de celular" %>
+              <%= form.number_field :celular, class: "form-control" %>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

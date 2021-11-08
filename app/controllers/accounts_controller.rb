@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
   def index
     @accounts = Account.all
     @accounts = @accounts.where(["nombre LIKE :filter", :filter => "%" + params[:filter] + "%"]) unless params[:filter].blank?
+    @accounts = @accounts = @accounts.where(:sale_id => params[:sale_id]) if params[:sale_id]
   end
 
   # GET /accounts/1 or /accounts/1.json
