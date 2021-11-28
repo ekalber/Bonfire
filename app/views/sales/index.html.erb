@@ -135,12 +135,14 @@
         <td><%= "$"+sale.ganancia.to_s %></td>
         <td><%= raw iconify_active(sale.vendido) %></td>
         <td><%= raw iconify_active(sale.pagado) %></td>
-        <td><%= sale.account.nombre %></td>
+        <td><%= link_to sale.account.nombre, "#", "data-bs-toggle"=>"modal", "data-bs-target"=>"#customer_sales", "data-customer-id"=>sale.account.id, :id => "customer_sales_link"  %></td>
         <td><%= link_to 'Editar', edit_sale_path(sale), class: "btn btn-primary", style: "color:white" %></td>
         <td><%= link_to 'Eliminar', sale, class: "btn btn-primary", style: "color:white",  method: :delete, data: { confirm: '¿Está seguro?' }%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= render :partial => "sales/customer_sales_modal" %>
 
 <br>
