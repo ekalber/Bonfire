@@ -1,4 +1,4 @@
-<div class="modal fade" id="customer_sales" tabindex="-1" aria-labelledby="customer_sales" aria-hidden="true">
+<div class="modal fade" id="sales<%= account_id %>" tabindex="-1" aria-labelledby="customer_sales" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -6,7 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="customer_sales_data">
-        Loading...
+        <%= Sale.where(:account_id => account_id).inspect %>
       </div>  
     </div>
   </div>

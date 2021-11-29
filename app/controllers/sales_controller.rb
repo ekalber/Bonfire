@@ -6,11 +6,6 @@ class SalesController < ApplicationController
     @sales = Sale.all
   end
 
-  def customer_sales
-    @sales = Sale.where(account_id: params[:customer_id])
-    render :partial => "sales/customer_sales" if request.xhr?
-  end
-
   # GET /sales/1 or /sales/1.json
   def show
   end
